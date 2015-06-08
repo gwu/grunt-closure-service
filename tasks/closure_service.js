@@ -16,8 +16,6 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('closure_service', 'Compile JS using the google-closure-service.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
     });
 
     // Iterate over all specified file groups.
@@ -34,10 +32,7 @@ module.exports = function(grunt) {
       }).map(function(filepath) {
         // Read file source.
         return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
-
-      // Handle options.
-      src += options.punctuation;
+      }).join();
 
       // Write the destination file.
       grunt.file.write(f.dest, src);

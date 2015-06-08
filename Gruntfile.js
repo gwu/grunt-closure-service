@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      tests: ['tmp']
+      tests: ['dist']
     },
 
     // Configuration to be run (and then tested).
@@ -34,16 +34,14 @@ module.exports = function(grunt) {
         options: {
         },
         files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
+          'dist/output_with_default_options.js': ['test/fixtures/test_input.js']
         }
       },
-      custom_options: {
+      simple_options: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!'
         },
         files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
+          'dist/output_with_simple_options.js': ['test/fixtures/test_input.js']
         }
       }
     },

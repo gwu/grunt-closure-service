@@ -27,21 +27,19 @@ exports.closure_service = {
     // setup here if necessary
     done();
   },
-  default_options: function(test) {
-    test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+  default_options: function(test) {
+    var actual = grunt.file.read('dist/output_with_default_options.js');
+    var expected = grunt.file.read('test/expected/output_with_default_options.js');
+    test.equal(actual, expected, 'Should do nothing to the input.');
 
     test.done();
   },
-  custom_options: function(test) {
-    test.expect(1);
 
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+  simple_options: function(test) {
+    var actual = grunt.file.read('dist/output_with_simple_options.js');
+    var expected = grunt.file.read('test/expected/output_with_simple_options.js');
+    test.equal(actual, expected, 'Should minify the input.');
 
     test.done();
   },
