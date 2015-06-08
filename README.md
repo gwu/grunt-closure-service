@@ -1,6 +1,7 @@
 # grunt-closure-service
 
-> Compile JS using the google-closure-service.
+> Compile JS using the
+  [google-closure-service](https://developers.google.com/closure/compiler/docs/gettingstarted_api).
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -33,7 +34,8 @@ the data object passed into `grunt.initConfig()`.
 grunt.initConfig({
   closure_service: {
     options: {
-      // Task-specific options go here.
+      // Task-specific options go here. Available options are
+      // described in the Closure Compiler API Reference.
     },
     your_target: {
       // Target-specific file lists and/or options go here.
@@ -44,52 +46,51 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+For a complete set of options, see the [Google Closure Compiler API
+Reference](https://developers.google.com/closure/compiler/docs/api-ref).
+
+#### options.compilation_level
 Type: `String`
-Default value: `',  '`
+Default value: `'SIMPLE_OPTIMIZATIONS'`
 
-A string value that is used to do something with whatever.
+The compilation level, which can be `'WHITESPACE_ONLY'`,
+`'SIMPLE_OPTIMIZATIONS'`, or `'ADVANCED_OPTIMIZATIONS'`.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+#### options.use_closure_library
+Type: `Boolean`
+Default value: `false`
 
-A string value that is used to do something else with whatever else.
+Whether to include the Google Closure Library while compiling.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with
-whatever. So if the `testing` file has the content `Testing` and the
-`123` file had the content `1 2 3`, the generated result would be
-`Testing, 1 2 3.`
+In this example, the default options are used to do compile, which
+does simple optimizations on the input.
 
 ```js
 grunt.initConfig({
   closure_service: {
     options: {},
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'dest/output.min.js': ['src/input1.js', 'src/input2.js'],
     },
   },
 });
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with
-whatever else. So if the `testing` file has the content `Testing` and
-the `123` file had the content `1 2 3`, the generated result in this
-case would be `Testing: 1 2 3 !!!`
+In this example, we specify that we only want whitespace removed, with
+no other optimizations.
 
 ```js
 grunt.initConfig({
   closure_service: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      compilation_level: 'WHITESPACE_ONLY'
     },
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'dest/output.min.js': ['src/input1.js', 'src/input2.js'],
     },
   },
 });
