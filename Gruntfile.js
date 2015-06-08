@@ -39,9 +39,18 @@ module.exports = function(grunt) {
       },
       simple_options: {
         options: {
+          compilation_level: 'WHITESPACE_ONLY'
         },
         files: {
           'dist/output_with_simple_options.js': ['test/fixtures/test_input.js']
+        }
+      },
+      advanced_options: {
+        options: {
+          compilation_level: 'ADVANCED_OPTIMIZATIONS'
+        },
+        files: {
+          'dist/output_with_advanced_options.js': ['test/fixtures/test_input.js']
         }
       }
     },

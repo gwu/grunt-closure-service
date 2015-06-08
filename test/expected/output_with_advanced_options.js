@@ -1,0 +1,1 @@
+console.log("This is a test.");function a(b){console.log("In myFunction");console.log("Received: "+b)}goog.a("test.myFunction",a);a("my variable");

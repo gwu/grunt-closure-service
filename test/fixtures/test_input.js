@@ -7,11 +7,11 @@ goog.provide('test');
 
 console.log('This is a test.');
 
-function myFunction(input) {
+test.myFunction = function(input) {
   console.log('In myFunction');
   console.log('Received: ' + input);
 }
+goog.exportSymbol('test.myFunction', test.myFunction);
 
 var myVar = 'my variable';
-
-myFunction(myVar);
+test.myFunction(myVar);

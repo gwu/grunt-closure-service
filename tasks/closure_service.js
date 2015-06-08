@@ -8,14 +8,22 @@
 
 'use strict';
 
+var ccs = require('closure-compiler-service');
+
 module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
   grunt.registerMultiTask('closure_service', 'Compile JS using the google-closure-service.', function() {
+    // Tell grunt that we're not done when this function
+    // returns. Rather, when we call done().
+    var done = this.async();
+
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
+      output_info: ['compiled_code', 'errors', 'warnings'],
+      compilation_level: 'SIMPLE_OPTIMIZATIONS'
     });
 
     // Iterate over all specified file groups.
@@ -34,11 +42,17 @@ module.exports = function(grunt) {
         return grunt.file.read(filepath);
       }).join();
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+      // Compile the source.
+      ccs.compile(src, options, function(errs, warns, code) {
+        // Write the output.
+        grunt.file.write(f.dest, code);
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
+        // Print a success message.
+        grunt.log.writeln('File "' + f.dest + '" created.');
+
+        // Tell grunt that we're done with the task.
+        done();
+      });
     });
   });
 

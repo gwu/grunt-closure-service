@@ -31,7 +31,7 @@ exports.closure_service = {
   default_options: function(test) {
     var actual = grunt.file.read('dist/output_with_default_options.js');
     var expected = grunt.file.read('test/expected/output_with_default_options.js');
-    test.equal(actual, expected, 'Should do nothing to the input.');
+    test.equal(actual, expected, 'Should perform simple optimizations on the input.');
 
     test.done();
   },
@@ -39,8 +39,16 @@ exports.closure_service = {
   simple_options: function(test) {
     var actual = grunt.file.read('dist/output_with_simple_options.js');
     var expected = grunt.file.read('test/expected/output_with_simple_options.js');
-    test.equal(actual, expected, 'Should minify the input.');
+    test.equal(actual, expected, 'Should just remove whitespace from the input.');
 
     test.done();
   },
+
+  advanced_options: function(test) {
+    var actual = grunt.file.read('dist/output_with_advanced_options.js');
+    var expected = grunt.file.read('test/expected/output_with_advanced_options.js');
+    test.equal(actual, expected, 'Should perform advanced optimizations on the input.');
+
+    test.done();
+  }
 };
