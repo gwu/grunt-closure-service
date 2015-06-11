@@ -44,6 +44,21 @@ module.exports = function(grunt) {
 
       // Compile the source.
       ccs.compile(src, options, function(errs, warns, code) {
+        // Check for errors.
+        if (errs) {
+          grunt.log.error(JSON.stringify(errs, null, 2));
+        }
+
+        // Check for warnings.
+        if (warns) {
+          grunt.log.warn(JSON.stringify(warns, null, 2));
+        }
+
+        if (errs || warns) {
+          // Fail.
+          done(false);
+        }
+
         // Write the output.
         grunt.file.write(f.dest, code);
 
