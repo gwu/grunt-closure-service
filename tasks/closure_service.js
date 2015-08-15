@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       }).map(function(filepath) {
         // Read file source.
         return grunt.file.read(filepath);
-      }).join();
+      }).join('');
 
       // Compile the source.
       ccs.compile(src, options, function(errs, warns, code) {
