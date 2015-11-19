@@ -50,5 +50,13 @@ exports.closure_service = {
     test.equal(actual, expected, 'Should perform advanced optimizations on the input.');
 
     test.done();
+  },
+
+  with_externs: function(test) {
+    var actual = grunt.file.read('dist/output_with_externs.js');
+    var expected = grunt.file.read('test/expected/output_with_externs.js');
+    test.equal(actual, expected, 'Should preserve references to externs.');
+
+    test.done();
   }
 };

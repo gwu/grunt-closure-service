@@ -52,6 +52,15 @@ module.exports = function(grunt) {
         files: {
           'dist/output_with_advanced_options.js': ['test/fixtures/test_input.js']
         }
+      },
+      with_externs: {
+        options: {
+          compilation_level: 'ADVANCED_OPTIMIZATIONS',
+          js_externs: 'function externalFunction() {};'
+        },
+        files: {
+          'dist/output_with_externs.js': ['test/fixtures/test_input_with_externs.js']
+        }
       }
     },
 
